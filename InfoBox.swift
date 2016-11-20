@@ -12,6 +12,7 @@ import SpriteKit
 
 class InfoBox {
     var node: SKSpriteNode!
+    var isShowing: Bool!
     var buttonImage:String!
     var button: SKSpriteNode!
     var closeButton: SKSpriteNode!
@@ -26,6 +27,7 @@ class InfoBox {
         self.node.size = size
         self.node.position = position
         self.node.zPosition = z
+        self.isShowing = false
         
         self.buttonImage = buttonImg
         self.addButton()
@@ -46,6 +48,7 @@ class InfoBox {
         self.node.size = size
         self.node.position = position
         self.node.zPosition = z
+        self.isShowing = false
         
         // self.button = SKSpriteNode()  // no button but need to init it.
         self.button = makeMuteButton()
@@ -53,7 +56,7 @@ class InfoBox {
         // self.closeButton = SKSpriteNode() // no button but need to init it.
         self.closeButton = makeMuteButton()
     }
-    
+
     
     
     
@@ -108,6 +111,28 @@ class InfoBox {
         self.button.zPosition = self.node.zPosition + 1
         self.button.size = CGSize(width: 330, height: 50)
         self.node.addChild(button)
+    }
+    func addButton(withText: String) {
+        self.addButton() // add button first!
+        
+        let lab = SKLabelNode(text: withText)
+        lab.fontName = textFontNameBold
+        lab.fontSize = 26
+        lab.fontColor = UIColor.white
+        lab.position = self.button.position + CGPoint(x: 0, y: -10)
+        lab.zPosition = self.button.zPosition + 1
+        self.node.addChild(lab)
+    }
+    func addButton(withText: String, color: UIColor) {
+        self.addButton() // add button first!
+        
+        let lab = SKLabelNode(text: withText)
+        lab.fontName = textFontNameBold
+        lab.fontSize = 26
+        lab.fontColor = color
+        lab.position = self.button.position + CGPoint(x: 0, y: -10)
+        lab.zPosition = self.button.zPosition + 1
+        self.node.addChild(lab)
     }
     
     func addCloseButton() {
@@ -187,7 +212,7 @@ class InfoBox {
             
             let aLine = SKLabelNode(text: line)
             aLine.fontSize = 23
-            aLine.fontColor = UIColor.brown
+            aLine.fontColor = color
             aLine.fontName = fontName
             aLine.position = CGPoint(x: initPosition.x, y: initPosition.y - lineOffset)
             aLine.zPosition = self.node.zPosition + 1
@@ -206,6 +231,81 @@ class InfoBox {
         self.node.addChild(content)
         
     }
+
+    
+    //=== box moving action =====================================
+    
+    fileprivate func movingUpward(targetButton: SKNode, toShow: Bool, byOffset: CGFloat) {
+        let currentPosition = targetButton.position
+        var offset: CGFloat = 0
+        let hiddingLine: CGFloat = -201 // the bottom line of landscape screen.
+        // print("currY: \(currentPosition.y), hiddingline=\(hiddingLine), maxX=\(self.frame.maxX)")
+        if toShow && (currentPosition.y < hiddingLine) {
+            offset = byOffset // move up
+        }
+        if (!toShow) && (currentPosition.y > hiddingLine) { // already hidden, no need to hide
+            offset = -byOffset // move down
+        }
+        
+        if offset != 0 {
+            let move = SKAction.move(by: CGVector(dx: 0, dy: offset), duration: 0.25)
+            targetButton.run(move)
+        }
+    }
+    
+    fileprivate func movingDownward(targetButton: SKNode, toShow: Bool, byOffset: CGFloat) {
+        let currentPosition = targetButton.position
+        var offset: CGFloat = 0
+        let hiddingLine: CGFloat = 200 // the upper line of landscape screen.
+        // print("currY: \(currentPosition.y), hiddingline=\(hiddingLine)")
+        if toShow && (currentPosition.y > hiddingLine) { // already hidden, no need to hide
+            offset = -byOffset // move down to show
+        }
+        if (!toShow) && (currentPosition.y < hiddingLine) {
+            offset = byOffset // move up to hide
+        }
+        
+        if offset != 0 {
+            let move = SKAction.move(by: CGVector(dx: 0, dy: offset), duration: 0.25)
+            targetButton.run(move)
+        }
+    }
+
+    
+    func moveBoxAtBottom(toshow: Bool, offSet: CGFloat) { // offSet == self.frame.maxY
+        if self.isShowing && !toshow { // move down to hide
+            movingUpward(targetButton: self.node, toShow: false, byOffset: offSet)
+            self.node.removeAllChildren()
+            
+            self.isShowing = false // now already closed.
+        }
+        else if !self.isShowing && toshow {
+                movingUpward(targetButton: self.node, toShow: true, byOffset: offSet)
+                for child in self.node.children {
+                    movingUpward(targetButton: child, toShow: true, byOffset: offSet)
+                }
+                self.isShowing = true // now already closed.
+        }
+    }
+    
+    func moveBoxAtTop(toshow: Bool, offSet: CGFloat) {
+        if self.isShowing && !toshow { // move up to hide
+            print("move up to hide, offSet = \(offSet)")
+            movingDownward(targetButton: self.node, toShow: false, byOffset: offSet)
+            self.node.removeAllChildren()
+            
+            self.isShowing = false
+        }
+        else if !self.isShowing && toshow { // move down to show
+            print("move down to show, offSet = \(offSet)")
+            movingDownward(targetButton: self.node, toShow: true, byOffset: offSet)
+            for child in self.node.children {
+                movingDownward(targetButton: child, toShow: true, byOffset: offSet)
+            }
+            self.isShowing = true
+        }
+    }
+
 
 }
 
