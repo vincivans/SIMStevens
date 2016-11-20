@@ -34,26 +34,30 @@ class GameScene: SKScene{
         case Map = 1
         case Buildings = 2
         // case 3 reserve for upgraded buildings.
-        case ButtonLabels = 4
-        case DialogBox = 5
-        case DialogBoxButton = 6
-        case DialogBoxImg = 7
+        case BuildingNameLabel = 5
+        case ButtonLabels = 6
+        case DialogBox = 7
+        case DialogBoxButton = 8
+        case DialogBoxImg = 9
+        case TalkingBox = 15
+        case Arrow = 16
     }
     func random()->CGFloat{//random generator
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
     }
-    func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
         return random() * (max-min)+min
     }
     
     let textFontName:     String = "AmericanTypewriter"
     let textFontNameBold: String = "AmericanTypewriter-Bold"
     
-    let moneyLogo : String = "💰"
-    let professorLogo: String = "🎓"
-    let researchLogo: String = "🚀"
-    let hourglassLogo: String = "⌛️"
-    let helpLogo = "📕"
+    let moneyLogo :     String = "💰"
+    let professorLogo:  String = "🎓"
+    let researchLogo:   String = "🚀"
+    let hourglassLogo:  String = "⌛️"
+    let helpLogo:       String = "📕"
+    let showNameLogo:   String = "💡"
     
     var campusMap : SKSpriteNode! // the map here!!!!!!
     var mapWidth : CGFloat!
@@ -61,15 +65,16 @@ class GameScene: SKScene{
     var mapCarmmerLocation: CGPoint!
     
     var helpNode: SKLabelNode!
+    var helpIsOn: Bool = false
+    var showNameNode: SKLabelNode!
+    var showNameIsOn: Bool = true
     var moneyLabel: SKLabelNode!
-    var money : Float = 10.0 { // unit as K.
-        didSet { /*
-            if money <= 999.0 {
-                moneyLabel.text = "\(moneyLogo)\(money)k"
-            }else{
-                moneyLabel.text = "\(moneyLogo)\(money / 1000.0)M"
-            } */
-            moneyLabel.text = "\(moneyLogo)\(money)k"
+    var money : Float = 20000.0 { // 200, unit as K.
+        didSet {
+            if money > 999.0 {
+                let m = Int(money)
+                moneyLabel.text = "\(moneyLogo)\(m / 1000),\((m % 1000) / 100)\((m % 100) / 10)\(m % 10)k"
+            }
         }
     }
     var professorsLabel:SKLabelNode!
@@ -87,25 +92,33 @@ class GameScene: SKScene{
     var currentOrder : Int = 0
 
     var selectedBuilding : Building!
-    var infoBox : InfoBox!
-    var infoBoxIsShowing = false
+    var infoBox :   InfoBox!
+    var talkingBox: InfoBox!
+    let talkingBoxOffset: CGFloat = 140 // moving offSet: 140
 
+    // all house nodes:
     var gateHouse : Building!
-    var eas : Building!
-    var carnagie: Building!
-    var walkerGym: Building!
-    var burchard : Building!
-    var howeCenter : Building!
-    var library: Building!
-    var babbio : Building!
-    var ship: Building!
+    var eas :       Building!
+    var carnagie:   Building!
+    var walkerGym:  Building!
+    var burchard :  Building!
+    var howeCenter: Building!
+    var library:    Building!
+    var babbio :    Building!
+    var ship:       Building!
+    
+    var buildingList: [Building] = []
+    var buildingLabelOfName:[String:SKLabelNode] = [:]
+    var buildingLabelNodeInHelp:[SKLabelNode] = []
+    var buildingLabelInHelp:[String:CGPoint] = [:]
 
+    // interface buttons:
+    let buttonSize = CGSize(width: 53, height: 50)
     var infoButton = SKSpriteNode()
     var upgradeButton = SKSpriteNode()
     var infoUpgradeBtnIsShowing = false
     
-    let buttonSize = CGSize(width: 53, height: 50)
-
+    // treasure and quize:
     var treasureBox: TreasureBox!
     var treasureBoxIsOnMap: Bool = false
     
@@ -113,13 +126,18 @@ class GameScene: SKScene{
     var key: String!
     var userAnswer: String!
     var alreadySelect: Bool = false
+
+    // teaching modules:
+    var teachingStep: Int = 1
+    var arrow = SKSpriteNode()
+    
     
     
     //=== set up all items above ===========================================================
     
     func setUpMap(){
         
-        campusMap = SKSpriteNode(imageNamed: "Stevens_map2.jpg")
+        campusMap = SKSpriteNode(imageNamed: "Stevens_map3.jpg")
         campusMap.position = CGPoint(x: 0, y: 0)
         campusMap.zPosition = LayerAt.Map.rawValue
         self.addChild(campusMap)
@@ -156,18 +174,16 @@ class GameScene: SKScene{
         moneyLabel.position = CGPoint(x: self.frame.midX + 270, y: self.frame.midY + 170)
         moneyLabel.zPosition = LayerAt.ButtonLabels.rawValue
         self.addChild(moneyLabel)
-/*
-        infoBox = SKSpriteNode(imageNamed: "dialogbox")
-        infoBox.size = CGSize(width: self.frame.maxY * 0.95, height: self.frame.maxX * 0.95)
-        infoBox.position = CGPoint(x: self.frame.midX, y: -self.frame.maxY)
-        infoBox.zPosition = LayerAt.DialogBox.rawValue
-        infoBox.addChild(closeButton)
-        self.addChild(infoBox)
-*/
+
         let boxSize = CGSize(width: self.frame.maxY * 0.95, height: self.frame.maxX * 0.95)
         let boxPosition = CGPoint(x: self.frame.midX, y: -self.frame.maxY)
         infoBox = InfoBox(boxImg: "dialogbox", size: boxSize, position: boxPosition, z: LayerAt.DialogBox.rawValue, buttonImg: "button-blue")
         self.addChild(infoBox.node)
+        
+        let sz = CGSize(width: self.frame.maxY * 0.9, height: self.frame.maxX * 0.35)
+        let ps = CGPoint(x: self.frame.midX, y: self.frame.maxY*0.42) // above top line(Y*0.3)
+        talkingBox = InfoBox(boxImg: "dialogbox-small", size: sz, position: ps, z: LayerAt.TalkingBox.rawValue)
+        self.addChild(talkingBox.node)
         
     }
     
@@ -178,34 +194,65 @@ class GameScene: SKScene{
         let sd: CGFloat = 96 // side of initial wood-sign image
         // sign-newhouse  is init image
         
-        gateHouse = Building(image: "", name: "The Gate House", year: 1835, level: 0, order: 1,numOfStudents: 100, upGradeCost: 100, x: mapX+400, y: mapY-123, width: sd, height: sd)
+        gateHouse = Building(image: "sign-newhouse", name: "The Gate House", year: 1835, order: 1,numOfStudents: 100, upGradeCost: 100, x: mapX+450, y: mapY-210, width: sd, height: sd)
 
-        eas = Building(image: "Spaceship", name: "Edwin A. Stevens Building", year: 1870, level: 0, order: 1,numOfStudents: 200, upGradeCost: 1000, x: mapX+300, y: mapY-200, width: sd, height: sd)
+        eas = Building(image: "sign-newhouse", name: "Edwin A. Stevens Building", year: 1870, order: 1,numOfStudents: 200, upGradeCost: 1000, x: mapX+850, y: mapY-580, width: sd, height: sd)
         
-        carnagie = Building(image: "sign-newhouse", name: "Carnegie Laboratory", year: 1902, level: 0, order: 2, numOfStudents: 500, upGradeCost: 2000, x: mapX-360, y: mapY+400, width: sd, height: sd)
+        carnagie = Building(image: "sign-newhouse", name: "Carnegie Laboratory", year: 1902, order: 2, numOfStudents: 500, upGradeCost: 2000, x: mapX+240, y: mapY-410, width: sd, height: sd)
         
-        walkerGym = Building(image: "sign-newhouse", name: "Walker Gymnasium", year: 1916, level: 0, order: 2, numOfStudents: 500, upGradeCost: 3100, x: mapX-150, y: mapY+300, width: sd, height: sd)
+        walkerGym = Building(image: "sign-newhouse", name: "Walker Gymnasium", year: 1916, order: 2, numOfStudents: 500, upGradeCost: 3100, x: mapX-100, y: mapY-50, width: sd, height: sd)
         
-        burchard = Building(image: "sign-newhouse", name: "Burchard Building", year: 1958, level: 0, order: 3, numOfStudents: 900, upGradeCost: 6100, x: mapX-10, y: mapY+10, width: sd, height: sd)
+        burchard = Building(image: "sign-newhouse", name: "Burchard Building", year: 1958, order: 3, numOfStudents: 900, upGradeCost: 6100, x: mapX+520, y: mapY-500, width: sd, height: sd)
         
-        howeCenter = Building(image: "sign-newhouse", name: "W.Howe Center", year: 1959, level: 0, order: 3, numOfStudents: 1200, upGradeCost: 7300, x: mapX-230, y: mapY+200, width: sd, height: sd)
+        howeCenter = Building(image: "sign-newhouse", name: "W.Howe Center", year: 1959, order: 3, numOfStudents: 1200, upGradeCost: 7300, x: mapX-280, y: mapY+350, width: sd, height: sd)
         
-        library = Building(image: "sign-newhouse", name: "Samuel C. Williams Library", year: 1960, level: 0, order: 4, numOfStudents: 1800, upGradeCost: 8000, x: mapX-100, y: mapY+260, width: sd, height: sd)
+        library = Building(image: "sign-newhouse", name: "Samuel C. Williams Library", year: 1960, order: 4, numOfStudents: 1800, upGradeCost: 8000, x: mapX-360, y: mapY+9, width: sd, height: sd)
         
-        babbio = Building(image: "sign-newhouse", name: "Babbio Center", year: 2006, level: 0, order: 4, numOfStudents: 2200, upGradeCost: 9100, x: mapX+360, y: mapY-70, width: sd, height: sd)
+        babbio = Building(image: "sign-newhouse", name: "Babbio Center", year: 2006, order: 4, numOfStudents: 2200, upGradeCost: 9100, x: mapX+631, y: mapY-230, width: sd, height: sd)
         
-        ship = Building(image: "sign-newhouse", name: "Ship", year: 1833, level: 0, order: 5, numOfStudents: 100, upGradeCost: 100, x: mapX + 600, y: mapY - 230, width: sd, height: sd)
-        
-        campusMap.addChild(gateHouse.node)
-        campusMap.addChild(eas.node)
-        campusMap.addChild(carnagie.node)
-        campusMap.addChild(walkerGym.node)
-        campusMap.addChild(burchard.node)
-        campusMap.addChild(howeCenter.node)
-        campusMap.addChild(library.node)
-        campusMap.addChild(babbio.node)
-        campusMap.addChild(ship.node)
-        
+        ship = Building(image: "sign-newhouse", name: "Ship", year: 1833, order: 5, numOfStudents: 100, upGradeCost: 100, x: mapX + 490, y: mapY + 330, width: sd, height: sd)
+
+        buildingList.append(gateHouse)
+        buildingList.append(eas)
+        buildingList.append(carnagie)
+        buildingList.append(walkerGym)
+        buildingList.append(burchard)
+        buildingList.append(howeCenter)
+        buildingList.append(library)
+        buildingList.append(babbio)
+        buildingList.append(ship)
+
+        for building in buildingList {
+            campusMap.addChild(building.node)
+            
+            // and add Label for names
+            let name = building.name 
+            let label = SKLabelNode(text: name)
+            label.fontName = textFontName
+            label.fontSize = 20
+            label.fontColor = UIColor.yellow
+            label.position = building.node.position + CGPoint(x: 0, y: 60)
+            label.zPosition = LayerAt.BuildingNameLabel.rawValue
+            
+            campusMap.addChild(label)
+            buildingLabelOfName[name] = label
+        }
+/*      // open to see coordinate marks on map:
+        let initx = Int(campusMap.frame.midX)
+        let inity = Int(campusMap.frame.midY)
+        for x in Int(campusMap.frame.minX)...Int(campusMap.frame.maxX) {
+            for y in Int(campusMap.frame.minY)...Int(campusMap.frame.maxY) {
+                if x % 50 == 0 && y % 50 == 0 {
+                    let cord = SKLabelNode(text: "\(x - initx):\(y - inity)")
+                    cord.fontName = textFontName
+                    cord.fontSize = 12
+                    cord.position = CGPoint(x: x, y: y)
+                    cord.zPosition = 7
+                    campusMap.addChild(cord)
+                }
+            }
+        }
+*/
     }
 
     func setUpButtons(){
@@ -215,6 +262,12 @@ class GameScene: SKScene{
         helpNode.position = CGPoint(x: -self.frame.midX - 330, y: -self.frame.midY - 190)
         helpNode.zPosition = LayerAt.ButtonLabels.rawValue
         self.addChild(helpNode)
+
+        showNameNode = SKLabelNode(text: "\(showNameLogo)") //
+        showNameNode.fontSize = 60
+        showNameNode.position = CGPoint(x: -self.frame.midX - 330, y: -self.frame.midY - 123)
+        showNameNode.zPosition = LayerAt.ButtonLabels.rawValue
+        self.addChild(showNameNode)
         
         infoButton = SKSpriteNode(imageNamed: "button-info")
         infoButton.size = buttonSize
@@ -247,16 +300,12 @@ class GameScene: SKScene{
         setUpQuize() // get a new quize.
      }
     func setUpTreasure(){
-        
-        //Determine where to add the box:
-        // Position the box slightly off-screen along the right edge,
         let tPosition = CGPoint(x: campusMap.frame.midX, y: campusMap.frame.midY)
-
         self.treasureBox = TreasureBox(img: "treasure-box-glow", initPosition: tPosition)
         
         campusMap.addChild(treasureBox.node)
         
-        _ = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(GameScene.refrashTreasureBox), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(GameScene.refrashTreasureBox), userInfo: nil, repeats: true)
         
     }
     func treasureBoxExplosionAction(){
@@ -271,6 +320,201 @@ class GameScene: SKScene{
         campusMap.run(SKAction.wait(forDuration: 8), completion: {
             explosion.removeFromParent()
         })
+    }
+    
+    
+    func setUpTeaching() { // the new player guide, only run once. ---------------------
+        
+        let clr = UIColor.black
+        let talkPosi = CGPoint(x: self.frame.midX + 30, y: self.frame.midY + 33)
+        let wordInLn = 36  // for talking box paragraph.
+        let fontSize: CGFloat = 27 // for talking box paragraph.
+        selectedBuilding = gateHouse
+
+        if teachingStep == 1 { // show welcome box, game info and task: build gatehouse.
+            let midX = infoBox.node.frame.midX
+            let midY = infoBox.node.frame.midY
+            let maxX = infoBox.node.frame.maxX
+            let maxY = infoBox.node.frame.maxY
+            
+            infoBox.node.removeAllChildren()
+
+            let duckSize = CGSize(width: 160, height: 200)
+            let duckPosi = CGPoint(x: midX - 236, y: midY - 76)
+            infoBox.addTitle(text: "Welcome To Stevens")
+            infoBox.addContent(image: "duck", imgSize: duckSize, atPosition: duckPosi)
+            infoBox.addParagraph(pText: "Hi! My name is Atlanda Stevens. Let's make the world better. I will lead you to get ready for your great advanture in Stevens Institue of Technology! ", numOfCharInLine: 40, color: clr, fontSize: 30, fontName: textFontName, initPosition: CGPoint(x: midX , y: maxY - 40))
+            let base: CGFloat = 160
+            let offset:CGFloat = 33
+            let sz: CGFloat = 23
+            infoBox.addTextLabel(text: "\(professorLogo) = professors & students", color: clr, fontSize: sz, fontName: textFontName, atPosition: CGPoint(x: midX+60, y: maxY-base-offset))
+            infoBox.addTextLabel(text: "\(moneyLogo) = money resource you own", color: clr, fontSize: sz, fontName: textFontName, atPosition: CGPoint(x: midX+60, y: maxY - base - offset * 2))
+            infoBox.addTextLabel(text: "\(helpLogo) see all buildings on campus", color: clr, fontSize: sz, fontName: textFontName, atPosition: CGPoint(x: midX+60, y: maxY - base - offset * 3))
+            infoBox.addTextLabel(text: "OK, now let's build first house⏩", color: clr, fontSize: sz, fontName: textFontName, atPosition: CGPoint(x: midX+60, y: maxY - base - offset * 4))
+
+            infoBox.addTextLabel(text: "Tap to continue~ ", color: UIColor.brown, fontSize: 30, fontName: textFontNameBold, atPosition: CGPoint(x: midX + 30, y: midY-160))
+
+            infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
+            
+        }
+        else if teachingStep == 2 { // move to gatehouse, tap it;
+            
+            infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
+
+            arrow = SKSpriteNode(imageNamed: "arrow-left")
+            arrow.size = CGSize(width: 150, height: 150)
+            arrow.position = gateHouse.node.position + CGPoint(x: -100, y: +10)
+            arrow.zPosition = LayerAt.Arrow.rawValue
+            let moveR = SKAction.move(by: CGVector(dx: -60, dy: 0), duration: 0.5)
+            let moveL = SKAction.move(by: CGVector(dx:  60, dy: 0), duration: 0.5)
+            let action = SKAction.repeatForever(SKAction.sequence([moveR, moveL]))
+            arrow.run(action)
+            campusMap.addChild(arrow)
+            
+            let moveToGateHouse = SKAction.move(by: CGVector(dx: -410, dy: 100), duration: 1)
+            self.campusMap.run(moveToGateHouse)
+            
+            let words = "These signs are your buildings yet to build. Tap it. "
+            talkingBox.addParagraph(pText: words, numOfCharInLine: wordInLn, color: clr, fontSize: fontSize, fontName: textFontName, initPosition: talkPosi)
+            talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+            
+        }
+        else if teachingStep == 3 { // show arrow to open info-box;
+            
+            // talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            talkingBox.node.removeAllChildren()
+            arrow.removeFromParent()
+            
+            moveInfoAndUpgradeButtons(toshow: true)
+            
+            arrow = SKSpriteNode(imageNamed: "arrow-down")
+            arrow.size = CGSize(width: 130, height: 130)
+            arrow.position = gateHouse.node.position + CGPoint(x: -80, y: +10)
+            arrow.zPosition = LayerAt.Arrow.rawValue
+            let moveUp = SKAction.move(by: CGVector(dx: 0, dy: 40), duration: 0.5)
+            let moveDn = SKAction.move(by: CGVector(dx: 0, dy: -40), duration: 0.5)
+            let action = SKAction.repeatForever(SKAction.sequence([moveUp, moveDn]))
+            arrow.run(action)
+            campusMap.addChild(arrow)
+            
+            let words = "Great! This is [info-button], tap it to read detail story. "
+            talkingBox.addParagraph(pText: words, numOfCharInLine: wordInLn, color: clr, fontSize: fontSize, fontName: textFontName, initPosition: talkPosi)
+            talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+            
+            // talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+        }
+        else if teachingStep == 4 { // open info box
+            
+            // talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            talkingBox.node.removeAllChildren()
+            
+            arrow.removeAllActions()
+            arrow.removeFromParent()
+            let words = "Here is introduction of this house, it may help you to win extra \(moneyLogo) in Happy Quize. Tap to read more ~  "
+            talkingBox.addParagraph(pText: words, numOfCharInLine: wordInLn, color: clr, fontSize: fontSize, fontName: textFontName, initPosition: talkPosi + CGPoint(x: 0, y: 10))
+            talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+            
+            showInfoBoxOf(currentBuilding: selectedBuilding)
+            
+        }
+        else if teachingStep == 5 { // close hint, only show infoBox
+            
+            talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            
+        }
+        else if teachingStep == 6 { // close info box, show arrow to upgrade-btn;
+            
+            infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
+            // talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            // talkingBox.node.removeAllChildren()
+            
+            arrow.removeAllActions()
+            arrow.size = CGSize(width: 130, height: 130)
+            arrow.position = gateHouse.node.position + CGPoint(x: 10, y: 10)
+            arrow.zPosition = LayerAt.Arrow.rawValue
+            let moveUp = SKAction.move(by: CGVector(dx: 0, dy: 60), duration: 0.5)
+            let moveDn = SKAction.move(by: CGVector(dx: 0, dy: -60), duration: 0.5)
+            let action = SKAction.repeatForever(SKAction.sequence([moveUp, moveDn]))
+            arrow.run(action)
+            campusMap.addChild(arrow)
+            
+            let words = "OK, now let's see how to build it. This is [upgrade] button, tap it.  "
+            talkingBox.addParagraph(pText: words, numOfCharInLine: wordInLn, color: clr, fontSize: fontSize, fontName: textFontName, initPosition: talkPosi)
+            talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+            
+        }
+        else if teachingStep == 7 { // open upgrade box:
+            
+            arrow.removeFromParent()
+            // talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            talkingBox.node.removeAllChildren()
+
+            showUpGradBoxOf(currentBuilding: selectedBuilding)
+            
+            let words = "Use \(moneyLogo)\(selectedBuilding.upGradeCost) to build the Gate House. This box showing how many population you can get after upgrading.  "
+            talkingBox.addParagraph(pText: words, numOfCharInLine: wordInLn, color: clr, fontSize: fontSize, fontName: textFontName, initPosition: talkPosi + CGPoint(x: 0, y: 10))
+            // talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+            
+            arrow = SKSpriteNode(imageNamed: "arrow-left")
+            arrow.size = CGSize(width: 150, height: 150)
+            arrow.position = CGPoint(x: self.frame.midX-160, y: self.frame.midY - 130)
+            arrow.zPosition = LayerAt.Arrow.rawValue
+            let moveR = SKAction.move(by: CGVector(dx: -50, dy: 0), duration: 0.5)
+            let moveL = SKAction.move(by: CGVector(dx:  50, dy: 0), duration: 0.5)
+            let action = SKAction.repeatForever(SKAction.sequence([moveR, moveL]))
+//            let action = SKAction.repeat(SKAction.sequence([moveR, moveL]), count: 60)
+            arrow.run(action)
+//            arrow.run(action, completion: { arrow.removeFromParent() })
+            self.addChild(arrow)
+            
+        }
+        else if teachingStep == 8 { // upgrade the gate house
+            
+            arrow.removeFromParent()
+            infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
+            // talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            talkingBox.node.removeAllChildren()
+            upGradeCurrentBuilding()
+            
+            let words = "😆Great! You build the Gate House! In this way you can build all houses based on reality of history of SIT.  "
+            talkingBox.addParagraph(pText: words, numOfCharInLine: wordInLn, color: clr, fontSize: 20, fontName: textFontName, initPosition: talkPosi + CGPoint(x: 0, y: 10))
+            talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+            
+        }
+        else if teachingStep == 9 {
+            
+            talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+            
+            let duckSize = CGSize(width: 160, height: 200)
+            let duckPosi = CGPoint(x: infoBox.node.frame.midX - 236, y: infoBox.node.frame.midY - 76)
+            let word = "OK! Try to read more story and find the [treasure box] on campus, you will get surprize and earn more \(moneyLogo). Enjoyin your advanture in Stevens. "
+            infoBox.addTitle(text: "Go Stevens Ducks")
+            infoBox.addCloseButton()
+            infoBox.addContent(image: "duck", imgSize: duckSize, atPosition: duckPosi)
+            infoBox.addButton(withText: "OK")
+            infoBox.addParagraph(pText: word, numOfCharInLine: 40, color: clr, fontSize: 30, fontName: textFontName, initPosition: CGPoint(x: infoBox.node.frame.midX , y: infoBox.node.frame.maxY - 50))
+            infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
+            
+        }
+        else if teachingStep == 10 {
+            
+            infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
+            
+        }
+        else if teachingStep == 20 { // show FInish Box
+            
+            infoBox.addCloseButton()
+            infoBox.addTitle(text: "All Buildings Done!")
+            
+            let wordPos = CGPoint(x: infoBox.node.frame.midX, y: infoBox.node.frame.midY + 50)
+            infoBox.addTextLabel(text: "🏆Congradulations!🏆", color: UIColor.black, fontSize: 36, fontName: textFontNameBold, atPosition: wordPos)
+            infoBox.addTextLabel(text: "You have build all main buildings on Campuse!", color: UIColor.black, fontSize: 27, fontName: textFontName, atPosition: wordPos + CGPoint(x: 0, y: -100))
+            
+            infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
+            
+        }
+        
+        teachingStep += 1 // move on for next step on calling.
     }
 
     
@@ -287,6 +531,8 @@ class GameScene: SKScene{
         setUpQuize()
         
         setUpTreasure()
+        
+        setUpTeaching()
         
     }
     
@@ -338,34 +584,35 @@ class GameScene: SKScene{
             infoUpgradeBtnIsShowing = false
         }
     }
-    func moveInfoBox(toshow: Bool) {
-        if infoBoxIsShowing && !toshow {
-            moving(targetButton: infoBox.node, toShow: false, byOffset: self.frame.maxY)
-            infoBox.node.removeAllChildren()
-            
-            infoBoxIsShowing = false // now already closed.
-        }else
-        if !infoBoxIsShowing && toshow {
-            moving(targetButton: infoBox.node, toShow: true, byOffset: self.frame.maxY)
-            for child in infoBox.node.children {
-                moving(targetButton: child, toShow: true, byOffset: self.frame.maxY)
-            }
-            infoBoxIsShowing = true // yes now it is showing
-        }
-    }
     
     func selectingOn(building: Building){
         selectedBuilding = building // mark global var.
         moveInfoAndUpgradeButtons(toshow: true)
+        
+        // add selecting effect: name becomes larger.
+        for lab in buildingLabelOfName {
+            if lab.key == building.name {
+                lab.value.fontName = textFontNameBold
+                lab.value.fontSize = 26
+            }else{ // set back to default value:
+                lab.value.fontName = textFontName
+                lab.value.fontSize = 20
+            }
+        }
+        
+        if selectedBuilding.reword > 0 { // research already done!
+            money += Float(selectedBuilding.reword)
+            selectedBuilding.reword = -1 // reset as none research.
+            selectedBuilding.timmingLabel.zPosition = -5
+        }
     }
     
     
     func showInfoBoxOf(currentBuilding: Building){
-        let titlePosition = CGPoint(x: infoBox.node.frame.midX, y: infoBox.node.frame.maxY-33)
         let introBuilding = descriptionOf[currentBuilding.name]!
-        infoBox.addTitle(text: currentBuilding.name, fontSize: 36, atPosition: titlePosition)
+        infoBox.addTitle(text: currentBuilding.name)
 
-        let buildingImg = buildingImageOf[currentBuilding.name]!
+        let buildingImg = buildingInfoImgOf[currentBuilding.name]!
         let buildingSize = CGSize(width: 270, height: 270)
         let imgPosition = CGPoint(x: infoBox.node.frame.minX+100, y: infoBox.node.frame.midY-30)
         infoBox.addContent(image: buildingImg, imgSize: buildingSize, atPosition: imgPosition)
@@ -373,7 +620,8 @@ class GameScene: SKScene{
         let paragraphPosition = CGPoint(x: infoBox.node.frame.minX + 400, y: infoBox.node.frame.maxY - 50)
         infoBox.addParagraph(pText: introBuilding, numOfCharInLine: 30, color: UIColor.brown, fontSize: 27, fontName: textFontName, initPosition: paragraphPosition)
         
-        moveInfoBox(toshow: true)
+        //moveInfoBox(toshow: true)
+        infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
     }
     
     
@@ -381,51 +629,59 @@ class GameScene: SKScene{
         
         var addLabelText: String = " "
         let txFontsize: CGFloat = 21
+        let infoTextPos = infoBox.button.position
         
         if selectedBuilding.upGradeCost > money {
             addLabelText = "You need more \(moneyLogo)\(selectedBuilding.upGradeCost - money) for up grade."
-        }else
-        if selectedBuilding.order >= currentOrder + 2 {
-//        if selectedBuilding.year > year && selectedBuilding.order > currentOrder {
+        }
+        else if selectedBuilding.order >= currentOrder + 2 {
             addLabelText = "First, you need to build:"
             var offset: CGFloat = 0
             var count = 0
             
             for building in buildingOrders {
-                if count == 2 { // show at most 2 names.
-                    // break  // open this to limite number of building name display.
+                if count >= 2 { // show at most 2 names.
+                    break  // open this to limite number of building name display.
                 }
                 if building.value == max(1, currentOrder + 1) {
-                    print("get building \(building.key), order \(building.value)")
                     offset += 23
                     count += 1
                     
-                    let preBuildPosition = CGPoint(x: infoBox.button.position.x + 90, y: infoBox.button.position.y + 106 - offset)
+                    let preBuildPosition = infoTextPos + CGPoint(x: 100, y: 90 - offset)
                     infoBox.addTextLabel(text: building.key, color: UIColor.red, fontSize: txFontsize, fontName: textFontNameBold, atPosition: preBuildPosition)
                 }
             }
         }
-        let addLabelPosition = CGPoint(x: infoBox.button.position.x + 90, y: infoBox.button.position.y + 110)
+        let addLabelPosition = infoTextPos + CGPoint(x: 110, y: 90)
         infoBox.addTextLabel(text: addLabelText, color: UIColor.red, fontSize: txFontsize, fontName: textFontName, atPosition: addLabelPosition)
     }
     
-    func upGradeCurrentBuilding(){
+    func upGradeCurrentBuilding(){ // call at touches --> when upgrade button tapped.
         print("checking order: selected Building order: \(selectedBuilding.order), current: \(currentOrder)")
         // Yes upgrade:
-        if selectedBuilding.upGradeCost < money && selectedBuilding.order <= currentOrder + 1 {
+        if (selectedBuilding.upGradeCost < money) && (selectedBuilding.order <= currentOrder + 1) {
             
             money -= selectedBuilding.upGradeCost
-            year = selectedBuilding.year
+            if selectedBuilding.year > year {
+                year = selectedBuilding.year
+            }
             professors += selectedBuilding.containStudents
-            currentOrder = selectedBuilding.order
+            if currentOrder < selectedBuilding.order {
+                currentOrder = selectedBuilding.order
+            }
             buildingOrders.removeValue(forKey: selectedBuilding.name)
-            print("after upgrade, current order : \(currentOrder)")
             
-            moveInfoBox(toshow: false)
+            // moveInfoBox(toshow: false)
+            infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
             
             selectedBuilding.upgradeIn(parentNode: campusMap)
             
-        }else{ // No upgrade, show a message:
+            if selectedBuilding.year >= 2006 {
+                teachingStep = 20 // go to show FINISH infobox.
+                _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector("setUpTeaching"), userInfo: nil, repeats: false)
+            }
+        }
+        else{ // No upgrade, show a message:
             
             showCondictionsLabel()
             
@@ -437,7 +693,7 @@ class GameScene: SKScene{
         infoBox.addCloseButton()
         infoBox.addButton()
         
-        let textRsch = "New Skill\(researchLogo) \(buildingResearchOf[currentBuilding.name]!)"
+        let textRsch = "\(researchLogo) \(buildingResearchOf[currentBuilding.name]!)"
         let textProf = "➕ \(professorLogo)\(currentBuilding.containStudents)"
         var textTime = "\(hourglassLogo) "
         let getTime : TimeInterval = buildingUpgradeTimeOf[currentBuilding.name]!
@@ -459,7 +715,7 @@ class GameScene: SKScene{
         var msgOffset: CGFloat = 0
         for msg in infoText {
             msgOffset += 40
-            let txPosition = CGPoint(x: infoBox.node.frame.midX + 30, y: infoBox.node.frame.maxY - 41 - msgOffset)
+            let txPosition = CGPoint(x: infoBox.node.frame.midX + 60, y: infoBox.node.frame.maxY - 66 - msgOffset)
             infoBox.addTextLabel(text: msg, color: UIColor.brown, fontSize: 26, fontName: textFontNameBold, atPosition: txPosition)
         }
         
@@ -467,24 +723,23 @@ class GameScene: SKScene{
         
         let size = CGSize(width: 260, height: 260)
         let nextImgPosition = CGPoint(x: infoBox.node.frame.minX+100, y: infoBox.node.frame.midY-30)
-        infoBox.addContent(image: "house15", imgSize: size, atPosition: nextImgPosition)
+        let infoImg = buildingInfoImgOf[selectedBuilding.name]!
+        infoBox.addContent(image: infoImg, imgSize: size, atPosition: nextImgPosition)
         
-        
-        var buttonLogo: String = "🙈Need \(moneyLogo)"  // if not enough money.
+        var buttonLogo: String
         if currentBuilding.upGradeCost < money {
             buttonLogo = moneyLogo  // if allow upgrade.
+        }else{
+            buttonLogo = "🙈You need \(moneyLogo)"  // if not enough money.
         }
         let msgMoney = "\(buttonLogo) \(currentBuilding.upGradeCost)k"
-        var btnfontColor: UIColor!
         if currentBuilding.upGradeCost < money {
-            btnfontColor = UIColor.white
+            infoBox.addButton(withText: msgMoney, color: UIColor.white)
         }else{
-            btnfontColor = UIColor.red
+            infoBox.addButton(withText: msgMoney, color: UIColor.red)
         }
-        let btnPosition = CGPoint(x: infoBox.button.frame.midX, y: infoBox.button.frame.midY - 10)
-        infoBox.addTextLabel(text: msgMoney, color: btnfontColor, fontSize: 26, fontName: textFontNameBold, atPosition: btnPosition)
-        
-        moveInfoBox(toshow: true)
+
+        infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
     }
     
     func showResearchingBoxOf(currentBuilding: Building) {
@@ -499,43 +754,52 @@ class GameScene: SKScene{
 
         
         let text = researchLogo + researchDescriptionOf[currentBuilding.name]!
-        let textposition = CGPoint(x: infoBox.node.frame.midX+30, y: infoBox.node.frame.maxY-90)
+        let textposition = CGPoint(x: infoBox.node.frame.midX+30, y: infoBox.node.frame.maxY-150)
         infoBox.addParagraph(pText: text, numOfCharInLine: 23, color: UIColor.brown, fontSize: 30, fontName: textFontNameBold, initPosition: textposition)
         
-        infoBox.addButton()
+//        infoBox.addButton()
         
         var buttonLogo: String = "🙈Need \(moneyLogo)"  // if not enough money.
-        var buttonTextColor = UIColor.white
         if currentBuilding.upGradeCost < money {
             buttonLogo = moneyLogo  // if allow upgrade.
         }
-        let msgMoney = "\(buttonLogo) \(currentBuilding.upGradeCost)k"
-        if currentBuilding.upGradeCost < money {
-            buttonTextColor = UIColor.white
+        let msgMoney = "\(buttonLogo) \(currentBuilding.researchCost) k"
+        if currentBuilding.researchCost < money {
+            infoBox.addButton(withText: msgMoney, color: UIColor.white)
         }else{
-            buttonTextColor = UIColor.red
+            infoBox.addButton(withText: msgMoney, color: UIColor.red)
         }
-        let buttonTextPosition = CGPoint(x: infoBox.button.frame.midX, y: infoBox.button.frame.midY-10)
-        infoBox.addTextLabel(text: msgMoney, color: buttonTextColor, fontSize: 26, fontName: textFontNameBold, atPosition: buttonTextPosition)
-        
-        moveInfoBox(toshow: true)
+
+        infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
     }
     
     func doResearchInCurrentBuilding() {
-        
+        if selectedBuilding.level == 0 { // not allow to do research before upgrade.
+            return
+        }
+        if selectedBuilding.timeToFinish == 0 { // not doing research, then start.
+            self.money -= Float(selectedBuilding.researchCost)
+            selectedBuilding.setupResearch()
+        }else{
+            let wordPos = CGPoint(x: talkingBox.node.frame.midX, y: talkingBox.node.frame.midY)
+            talkingBox.addTextLabel(text: "Oops! You need to wait for current research finish. ", color: UIColor.black, fontSize: 23, fontName: textFontName, atPosition: wordPos)
+            talkingBox.moveBoxAtTop(toshow: true, offSet: talkingBoxOffset)
+        }
+        infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
     }
     
     
     //=== quize operation =======================================
-    
+    // yes I know, I got a typo of "Quiz" without 'e'
     func showQuizeBox() {
         infoBox.node.removeAllChildren()
         
-        infoBox.addTitle(text: "Stevens Happy Quize")
+        infoBox.addTitle(text: "Stevens Happy Quiz")
         infoBox.addCloseButton()
         infoBox.setAsQuizeBox(qz: quize)
         
-        moveInfoBox(toshow: true)
+        // moveInfoBox(toshow: true)
+        infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
         
         self.key = quize.key
         
@@ -543,7 +807,8 @@ class GameScene: SKScene{
         // setUpQuize() // put it into judge()
     }
     func closeQuizeBox(){
-        moveInfoBox(toshow: false)
+        // moveInfoBox(toshow: false)
+        infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
     }
     func quizeJudge(selecting: SKLabelNode){
         alreadySelect = true
@@ -564,20 +829,75 @@ class GameScene: SKScene{
             self.money += Float(getMoney)
             
             keyLabel.fontColor = UIColor.green
-            keyImg.text = "😁💰+\(getMoney)k"
+            keyImg.text = "😁+💰\(getMoney) k"
         }else{
             keyLabel.fontColor = UIColor.red
             keyImg.text = "😰❗️"
+            
+            let rightKey = SKLabelNode(text: "Key: \(key!)")
+            rightKey.fontSize = 30
+            rightKey.fontName = textFontNameBold
+            rightKey.fontColor = UIColor.blue
+            rightKey.position = CGPoint(x: infoBox.node.frame.midX, y: infoBox.node.frame.midY)
+            rightKey.zPosition = selecting.zPosition
+            infoBox.node.addChild(rightKey)
         }
         infoBox.node.addChild(keyLabel)
         infoBox.node.addChild(keyImg)
         
-        let _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(GameScene.closeQuizeBox), userInfo: nil, repeats: false)
+        let _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(GameScene.closeQuizeBox), userInfo: nil, repeats: false)
     }
+    
+    
+    //helpNode settings
+    func showHelpBox(){
+        if helpIsOn && infoBox.isShowing {
+            helpIsOn = false
+        }else if !helpIsOn && !infoBox.isShowing {
+            helpIsOn = true
+        }
+        infoBox.addTitle(text: "List Of All buildings")
+        
+        let midx = infoBox.node.frame.midX
+        let maxy = infoBox.node.frame.maxY - 10
+        var offset : CGFloat = 36
+        for building in buildingList {
+            offset += 30
+            let name = building.name
+            let lab = SKLabelNode(text: name)
+            lab.fontName = textFontName
+            lab.fontSize = 27
+            lab.fontColor = UIColor.black
+            lab.position = CGPoint(x: midx, y: maxy) - CGPoint(x: 0, y: offset)
+            lab.zPosition = LayerAt.DialogBoxButton.rawValue
+            infoBox.node.addChild(lab)
+            
+            buildingLabelNodeInHelp.append(lab)
+            let x = building.node.position.x
+            let y = building.node.position.y
+            let pos = CGPoint(x: -x, y: -y)
+            //            let pos = building.node.position // + (CGPoint(x: -820, y: 200))
+            buildingLabelInHelp[name] = pos
+        }
+        infoBox.addCloseButton()
+        infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
+        
+        
+        //        infoBox.setAsHelpBox(bn: linkName)
+        //        infoBox.moveBoxAtBottom(toshow: true, offSet: self.frame.maxY)
+    }
+    
     
     
     // allow tapped to move the map:
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        //--- for teaching step ----------
+        if teachingStep <= 10 { // do teaching guide.
+            setUpTeaching() // do step++
+            return
+        }
+
         let touch = touches.first! as UITouch
         let locationOnScreen = touch.location(in: self)
         let locationOnMap = touch.location(in: campusMap)
@@ -585,18 +905,29 @@ class GameScene: SKScene{
         
         for touch: AnyObject in touches {
             
-            // Check if the location of the touch is within the button's bounds
-            if helpNode.contains(locationOnScreen) && !infoBoxIsShowing {
-                print("help node tapped!!! pop out helping box!")
-                // moveInfoBox(toshow: true)
-                
-                // showQuizeBox()
+            // Check if the location of the touch is within the button's bounds---------------------
+            if helpNode.contains(locationOnScreen) && !infoBox.isShowing {
+                showHelpBox()
             }
-            else if infoButton.contains(locationOnScreen) && !infoBoxIsShowing {
+            else if showNameNode.contains(locationOnScreen) && !infoBox.isShowing {
+                if showNameIsOn {
+                    showNameIsOn = false
+                    for lab in buildingLabelOfName { // hide labels below map.
+                        lab.value.zPosition = -1
+                    }
+                }
+                else {
+                    showNameIsOn = true
+                    for lab in buildingLabelOfName { // show labels out from map.
+                        lab.value.zPosition = LayerAt.Buildings.rawValue
+                    }
+                }
+            }
+                // Interface buttons:-----------------------------------------------------------
+            else if infoButton.contains(locationOnScreen) && !infoBox.isShowing {
                 showInfoBoxOf(currentBuilding: selectedBuilding)
-                // print("now infoBox at: \(infoBox.position)")
-            }
-            else if upgradeButton.contains(locationOnScreen) && !infoBoxIsShowing {
+             }
+            else if upgradeButton.contains(locationOnScreen) && !infoBox.isShowing {
                 if selectedBuilding.level == 0 {
                     showUpGradBoxOf(currentBuilding: selectedBuilding)
                 }else{
@@ -609,39 +940,54 @@ class GameScene: SKScene{
                 treasureBox.isShowing = false // hide it after tapping!!!
                 alreadySelect = false   // allow selectons listening to tap action.
             }
+                // quize box listener:-----------------------------------------------------------
             else if !alreadySelect && infoBox.selectA.contains(locationOnInfoBox){
                 userAnswer = infoBox.selectA.text
                 quizeJudge(selecting: infoBox.selectA)
-                print("user selection = \(userAnswer)")
-                print("the key is: \(key)")
             }
             else if !alreadySelect && infoBox.selectB.contains(locationOnInfoBox){
                 userAnswer = infoBox.selectB.text
                 quizeJudge(selecting: infoBox.selectB)
-                print("user selection = \(userAnswer)")
-                print("the key is: \(key)")
             }
             else if !alreadySelect && infoBox.selectC.contains(locationOnInfoBox){
                 userAnswer = infoBox.selectC.text
                 quizeJudge(selecting: infoBox.selectC)
-                print("user selection = \(userAnswer)")
-                print("the key is: \(key)")
             }
+                // infoBox listener: upgrade and research action.-------------------------------
             else if infoBox.closeButton.contains(locationOnInfoBox) {
-                print("box close button tapped...close box.")
-                moveInfoBox(toshow: false)
+                // moveInfoBox(toshow: false)
+                infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
             }
-            else if infoBoxIsShowing && infoBox.button.contains(locationOnInfoBox) {
+            else if helpIsOn && infoBox.isShowing {
+                for label in buildingLabelNodeInHelp {
+                    if label.contains(locationOnInfoBox) {
+                        let getName = label.text
+                        let positionSelected = buildingLabelInHelp[getName!]
+                        let action = SKAction.move(to: positionSelected!, duration: 1)
+                        campusMap.run(action)
+                        
+                        for building in buildingList {
+                            if building.name == getName {
+//                                selectedBuilding = building
+                                selectingOn(building: building)
+                            }
+                        }
+                    }
+                }
+                helpIsOn = false
+                infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
+            }
+            else if infoBox.isShowing && infoBox.button.contains(locationOnInfoBox) {
                 if selectedBuilding.level == 0 {
                     upGradeCurrentBuilding()
                 }else{ // level > 0, allow to:
                     doResearchInCurrentBuilding()
-                    print("do research in current building()")
                 }
             }
             else if infoBox.node.contains(locationOnInfoBox) { // this MUST behide buttonsss!!
-                // tapping itself, do nothing.
+                // tapping infoBox itself, do nothing.
             }
+                // building Listener: ----------------------------------------------------------
             else if gateHouse.node.contains(locationOnMap) {
                 selectingOn(building: gateHouse)
             }
@@ -667,15 +1013,15 @@ class GameScene: SKScene{
                 selectingOn(building: babbio)
             }
             else if ship.node.contains(locationOnMap) {
-//                print("ship tapped!!!!!!")
-//                selectedBuilding = ship.node
-//                showInfoAndUpgradeButtons()
                 selectingOn(building: ship)
             }
-            else { // tapping at campusMap:
+                // tapping on campusMap: --------------------------------------------------------
+            else {
                 moveInfoAndUpgradeButtons(toshow: false)
-                moveInfoBox(toshow: false)
-                money += 500
+                infoBox.moveBoxAtBottom(toshow: false, offSet: self.frame.maxY)
+                talkingBox.moveBoxAtTop(toshow: false, offSet: talkingBoxOffset)
+
+                money += 1000 // for testing
             }
         }
         
@@ -690,7 +1036,7 @@ class GameScene: SKScene{
         
         // let windowSize = self.size
         let windowSize = self.frame.size
-        /*
+/*
         newPoint.x = CGFloat(min(newPoint.x,  (mapWidth / 2)  - (windowSize.width / 2)  ))
         newPoint.x = CGFloat(max(newPoint.x, -(mapWidth / 2)  + (windowSize.width / 2)  ))
         newPoint.y = CGFloat(min(newPoint.y,  (mapHeight / 2) - (windowSize.height / 2) ))
@@ -698,8 +1044,8 @@ class GameScene: SKScene{
  */
         newPoint.x = CGFloat(min(newPoint.x,  (mapWidth / 2)  - (windowSize.width / 2)  ))
         newPoint.x = CGFloat(max(newPoint.x, -(mapWidth / 2)  + (windowSize.width / 2)  ))
-        newPoint.y = CGFloat(min(newPoint.y,  (mapHeight / 2) - (windowSize.height / 6.1) ))
-        newPoint.y = CGFloat(max(newPoint.y, -(mapHeight / 2) + (windowSize.height / 6.1) ))
+        newPoint.y = CGFloat(min(newPoint.y,  (mapHeight / 2) - (windowSize.height / 6.6) ))
+        newPoint.y = CGFloat(max(newPoint.y, -(mapHeight / 2) + (windowSize.height / 6.6) ))
 
         return newPoint
     }
@@ -714,7 +1060,7 @@ class GameScene: SKScene{
     }
     // and handling pans , move map by move on screen:
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if infoBoxIsShowing { // then not allow to move map.
+        if infoBox.isShowing == true { // then not allow to move map.
             return
         }
         
