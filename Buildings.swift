@@ -12,7 +12,6 @@ import SpriteKit
 let textFontName:     String = "AmericanTypewriter"
 let textFontNameBold: String = "AmericanTypewriter-Bold"
 
-// info box story: 
 let descriptionOf : [String:String] = [
     
     "The Gate House":       "It was the grand entrance through which all guests approached the Castle, a haunting structure built for the Steven's in 1854. The Gate House remains; the Castle was demolished in 1959.",
@@ -34,45 +33,17 @@ let descriptionOf : [String:String] = [
     "Ship":     "我们的目标是星辰大海! Let's go outer ocean for aventure!!!   d(^o^)b "
 ]
 
-/// building mode showing on map(after upgrade):
+/// building mode showing on map:
 let buildingImageOf : [String:String] = [
     
-    "The Gate House":           "build-gatehouse",
-    "Edwin A. Stevens Building": "build-eas",
-    "Carnegie Laboratory":      "build-carnegie",
-    "Walker Gymnasium":         "build-gym",
-    "Burchard Building":        "build-burchard",
-    "W.Howe Center":            "build-howe",
-    "Samuel C. Williams Library": "build-library",
-    "Babbio Center":            "build-babbio",
-    "Ship":                     "ship01"
-    
-]
-let buildingImageSize : [String:CGSize] = [
-    
-    "The Gate House":           CGSize(width: 200, height: 200),
-    "Edwin A. Stevens Building": CGSize(width: 300, height: 300),
-    "Carnegie Laboratory":      CGSize(width: 330, height: 350),
-    "Walker Gymnasium":         CGSize(width: 180, height: 180),
-    "Burchard Building":        CGSize(width: 270, height: 230),
-    "W.Howe Center":            CGSize(width: 140, height: 255),
-    "Samuel C. Williams Library": CGSize(width: 300, height: 300),
-    "Babbio Center":            CGSize(width: 230, height: 230),
-    "Ship":                     CGSize(width: 330, height: 330)
-    
-]
-
-// building image in info box:
-let buildingInfoImgOf : [String:String] = [
-    
-    "The Gate House":           "info-gatehouse",
-    "Edwin A. Stevens Building": "info-eas",
-    "Carnegie Laboratory":      "info-carnegie",
-    "Walker Gymnasium":         "info-gym",
-    "Burchard Building":        "info-burchard",
-    "W.Howe Center":            "info-howe",
-    "Samuel C. Williams Library": "info-library",
-    "Babbio Center":            "info-babbio",
+    "The Gate House":           "house15",
+    "Edwin A. Stevens Building": "house15",
+    "Carnegie Laboratory":      "house15",
+    "Walker Gymnasium":         "house15",
+    "Burchard Building":        "house15",
+    "W.Howe Center":            "howe01",
+    "Samuel C. Williams Library": "house15",
+    "Babbio Center":            "house15",
     "Ship":                     "ship01"
     
 ]
@@ -80,15 +51,15 @@ let buildingInfoImgOf : [String:String] = [
 /// showing in researchingBox, and researching setup for each:
 let researchingImageOf : [String:String] = [
     
-    "The Gate House":           "research-gatehouse",
-    "Edwin A. Stevens Building": "research-eas",
-    "Carnegie Laboratory":      "research-carnegie",
-    "Walker Gymnasium":         "research-gym",
-    "Burchard Building":        "research-burchard",
-    "W.Howe Center":            "research-howe",
-    "Samuel C. Williams Library": "research-library",
-    "Babbio Center":            "research-babbio",
-    "Ship":                     "ship01"
+    "The Gate House":           "duck",
+    "Edwin A. Stevens Building": "Spaceship",
+    "Carnegie Laboratory":      "Spaceship",
+    "Walker Gymnasium":         "duck",
+    "Burchard Building":        "Spaceship",
+    "W.Howe Center":            "duck",
+    "Samuel C. Williams Library": "duck",
+    "Babbio Center":            "Spaceship",
+    "Ship":                     "Spaceship"
     
 ]
 let researchDescriptionOf : [String:String] = [
@@ -101,17 +72,17 @@ let researchDescriptionOf : [String:String] = [
     "W.Howe Center":            "duck researchDescription",
     "Samuel C. Williams Library": "duck researchDescription",
     "Babbio Center":            "SpaceshipresearchDescription",
-    "Ship":                     "Ocean science "
+    "Ship":                     "SpaceshipresearchDescription"
     
 ]
 let buildingResearchOf : [String:String] = [
     
     "The Gate House":           "Campus Security",
     "Edwin A. Stevens Building": "Mechanical Engineering",
-    "Carnegie Laboratory":      "3D printing development",
+    "Carnegie Laboratory":      "3D printing",
     "Walker Gymnasium":         "team up! Football ducks",
-    "Burchard Building":        "Swift3 iOS Engineering",
-    "W.Howe Center":            "New headquarter of SIT",
+    "Burchard Building":        "Communication lab",
+    "W.Howe Center":            "New headquarters of Stevens",
     "Samuel C. Williams Library": "Acamedy and Fun",
     "Babbio Center":            "Finance + Business",
     "Ship":                     "我们的目标是星辰大海"
@@ -119,17 +90,28 @@ let buildingResearchOf : [String:String] = [
 ]
 let buildingResearchTiming : [String:TimeInterval] = [
     
-    "The Gate House":          6, // 120,   // 2 min
-    "Edwin A. Stevens Building":32, //1200,   // 20 min
-    "Carnegie Laboratory":     52, //3600,   // 1 h
-    "Walker Gymnasium":        72, //10800,   // 3 h
-    "Burchard Building":       82, //36000,   // 10 h
-    "W.Howe Center":           92, //86400,   // 24 h
-    "Samuel C. Williams Library": 102, //97200, // 27 h
-    "Babbio Center":           162,    // 5 min
-    "Ship":                    72      // 0.5 min
+    "The Gate House":            5, // 120,   // 2 min
+    "Edwin A. Stevens Building":1200,   // 20 min
+    "Carnegie Laboratory":      3600,   // 1 h
+    "Walker Gymnasium":        10800,   // 3 h
+    "Burchard Building":       36000,   // 10 h
+    "W.Howe Center":           86400,   // 24 h
+    "Samuel C. Williams Library": 97200, // 27 h
+    "Babbio Center":            300,    // 5 min
+    "Ship":                     30      // 0.5 min
     
 ]
+/*
+ func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+    let interval = Int(interval)
+    let seconds = interval % 60
+    let minutes = (interval / 60) % 60
+    let hours = (interval / 3600)
+    return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+}
+*/
+
+
 
 // in seconds: Upgrade time
 let buildingUpgradeTimeOf : [String:TimeInterval] = [
@@ -216,6 +198,7 @@ class Building {
     func upgradeIn(parentNode: SKSpriteNode) {
         let oldPosition = node.position
         let oldzPosition = node.zPosition
+        let oldSize = node.size
         
         node.removeFromParent()
         
@@ -223,7 +206,7 @@ class Building {
         node = SKSpriteNode(imageNamed: img)
         node.position = oldPosition
         node.zPosition = oldzPosition
-        node.size = buildingImageSize[name]!
+        node.size = oldSize
         parentNode.addChild(node)
         
         self.timmingLabel = SKLabelNode(text: "00:00:00")
@@ -250,10 +233,12 @@ class Building {
     
     // @objc: Err: Argument of #selector refers to instance method '..' that is not exposed to Ojbective-c
     fileprivate func researchFinish() {
+        print("--- finish research for \(self.name)")
         self.secTimer.invalidate()
         self.timeToFinish = 0
         self.timmingLabel.text = "✅" // to show user that research has finished!
         self.reword = Int(researchCost * 2)
+        print("getting reword: \(self.reword) , label zPosition=\(timmingLabel.zPosition)")
     }
     @objc fileprivate func researchTimeCounting() {
         self.timeToFinish -= 1
@@ -263,19 +248,22 @@ class Building {
         let ss = ti % 60
         let timeStr = String(format: "%02d:%02d:%02d", hh, mm, ss)
         self.timmingLabel.text = timeStr
+        print(timeStr)
+        print("time label at : \(timmingLabel.position)")
         
         if self.timeToFinish <= 0 {
             researchFinish()
         }
     }
     func setupResearch() {
+        print("setup research for \(self.name)")
         self.secTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Building.researchTimeCounting), userInfo: nil, repeats: true)
         
         self.timeToFinish = buildingResearchTiming[name]!
         
         self.timmingLabel.position = CGPoint(x: 0, y: 40)
+        print("timmingLabel.position = \(timmingLabel.position), node.posi=\(node.position)")
         self.timmingLabel.zPosition = node.zPosition + 1
-        self.timmingLabel.text = "🔬"
         self.reword = 0 // -1: no research, 0: doing research, >1: getting reword
         
     }
