@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		865748991DD28092008C0AE4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748921DD28092008C0AE4 /* AudioToolbox.framework */; };
+		8657489A1DD28092008C0AE4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748931DD28092008C0AE4 /* Bolts.framework */; };
+		8657489E1DD28092008C0AE4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748971DD28092008C0AE4 /* Parse.framework */; };
+		8657489F1DD28092008C0AE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748981DD28092008C0AE4 /* SystemConfiguration.framework */; };
+		865748BE1DD28293008C0AE4 /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = 865748A41DD28293008C0AE4 /* _DS_Store */; };
+		865748BF1DD28293008C0AE4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748A51DD28293008C0AE4 /* Actions.sks */; };
+		865748C01DD28293008C0AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748A61DD28293008C0AE4 /* AppDelegate.swift */; };
+		865748C31DD28293008C0AE4 /* emoji_lol.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 865748A91DD28293008C0AE4 /* emoji_lol.jpg */; };
+		865748C41DD28293008C0AE4 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748AA1DD28293008C0AE4 /* Explosion.sks */; };
+		865748C51DD28293008C0AE4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748AB1DD28293008C0AE4 /* GameScene.sks */; };
+		865748C71DD28293008C0AE4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748AD1DD28293008C0AE4 /* GameViewController.swift */; };
+		865748C81DD28293008C0AE4 /* howe01.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748AE1DD28293008C0AE4 /* howe01.png */; };
+		865748C91DD28293008C0AE4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 865748AF1DD28293008C0AE4 /* Info.plist */; };
+		865748CB1DD28293008C0AE4 /* LaunchScreen.storyboard.xml in Resources */ = {isa = PBXBuildFile; fileRef = 865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */; };
+		865748CC1DD28293008C0AE4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748B21DD28293008C0AE4 /* LoginViewController.swift */; };
+		865748CD1DD28293008C0AE4 /* Main.storyboard.xml in Resources */ = {isa = PBXBuildFile; fileRef = 865748B31DD28293008C0AE4 /* Main.storyboard.xml */; };
+		865748CE1DD28293008C0AE4 /* notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 865748B41DD28293008C0AE4 /* notes.txt */; };
+		865748CF1DD28293008C0AE4 /* Quize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748B51DD28293008C0AE4 /* Quize.swift */; };
+		865748D01DD28293008C0AE4 /* sign-newhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748B61DD28293008C0AE4 /* sign-newhouse.png */; };
+		865748D11DD28293008C0AE4 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748B71DD28293008C0AE4 /* spark.png */; };
+		865748D21DD28293008C0AE4 /* Stevens_map2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 865748B81DD28293008C0AE4 /* Stevens_map2.jpg */; };
+		865748D31DD28293008C0AE4 /* street-light.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748B91DD28293008C0AE4 /* street-light.png */; };
+		865748D41DD28293008C0AE4 /* treasure-box-glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748BA1DD28293008C0AE4 /* treasure-box-glow.png */; };
+		865748D51DD28293008C0AE4 /* treasure-box.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748BB1DD28293008C0AE4 /* treasure-box.png */; };
+		865748D61DD28293008C0AE4 /* TreasureBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748BC1DD28293008C0AE4 /* TreasureBox.swift */; };
+		865748D71DD28293008C0AE4 /* tree05.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748BD1DD28293008C0AE4 /* tree05.png */; };
+		865748D91DD282C5008C0AE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 865748D81DD282C5008C0AE4 /* Assets.xcassets */; };
+		865748DC1DD2831E008C0AE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865748DA1DD2831E008C0AE4 /* LaunchScreen.storyboard */; };
+		865748DD1DD2831E008C0AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865748DB1DD2831E008C0AE4 /* Main.storyboard */; };
+		868CACA31DD8A0C1008749A0 /* Buildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868CACA21DD8A0C1008749A0 /* Buildings.swift */; };
+		868CACA51DD8A0E5008749A0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868CACA41DD8A0E5008749A0 /* GameScene.swift */; };
+		868CACA71DD8A0FD008749A0 /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868CACA61DD8A0FD008749A0 /* InfoBox.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6652D2AE1DB1216200617773 /* stevens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stevens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		865748911DD2807D008C0AE4 /* stevens-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "stevens-Bridging-Header.h"; sourceTree = "<group>"; };
+		865748921DD28092008C0AE4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioToolbox.framework; sourceTree = "<group>"; };
+		865748931DD28092008C0AE4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		865748971DD28092008C0AE4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		865748981DD28092008C0AE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
+		865748A41DD28293008C0AE4 /* _DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = _DS_Store; sourceTree = "<group>"; };
+		865748A51DD28293008C0AE4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		865748A61DD28293008C0AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		865748A91DD28293008C0AE4 /* emoji_lol.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = emoji_lol.jpg; sourceTree = "<group>"; };
+		865748AA1DD28293008C0AE4 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		865748AB1DD28293008C0AE4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		865748AD1DD28293008C0AE4 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		865748AE1DD28293008C0AE4 /* howe01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howe01.png; sourceTree = "<group>"; };
+		865748AF1DD28293008C0AE4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LaunchScreen.storyboard.xml; sourceTree = "<group>"; };
+		865748B21DD28293008C0AE4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		865748B31DD28293008C0AE4 /* Main.storyboard.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.storyboard.xml; sourceTree = "<group>"; };
+		865748B41DD28293008C0AE4 /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
+		865748B51DD28293008C0AE4 /* Quize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quize.swift; sourceTree = "<group>"; };
+		865748B61DD28293008C0AE4 /* sign-newhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign-newhouse.png"; sourceTree = "<group>"; };
+		865748B71DD28293008C0AE4 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		865748B81DD28293008C0AE4 /* Stevens_map2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stevens_map2.jpg; sourceTree = "<group>"; };
+		865748B91DD28293008C0AE4 /* street-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "street-light.png"; sourceTree = "<group>"; };
+		865748BA1DD28293008C0AE4 /* treasure-box-glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treasure-box-glow.png"; sourceTree = "<group>"; };
+		865748BB1DD28293008C0AE4 /* treasure-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treasure-box.png"; sourceTree = "<group>"; };
+		865748BC1DD28293008C0AE4 /* TreasureBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureBox.swift; sourceTree = "<group>"; };
+		865748BD1DD28293008C0AE4 /* tree05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree05.png; sourceTree = "<group>"; };
+		865748D81DD282C5008C0AE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		865748DA1DD2831E008C0AE4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		865748DB1DD2831E008C0AE4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		868CACA21DD8A0C1008749A0 /* Buildings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildings.swift; sourceTree = "<group>"; };
+		868CACA41DD8A0E5008749A0 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		868CACA61DD8A0FD008749A0 /* InfoBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBox.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6652D2AB1DB1216200617773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				865748991DD28092008C0AE4 /* AudioToolbox.framework in Frameworks */,
+				8657489E1DD28092008C0AE4 /* Parse.framework in Frameworks */,
+				8657489F1DD28092008C0AE4 /* SystemConfiguration.framework in Frameworks */,
+				8657489A1DD28092008C0AE4 /* Bolts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6652D2A51DB1216200617773 = {
+			isa = PBXGroup;
+			children = (
+				6652D2B01DB1216200617773 /* stevens */,
+				6652D2AF1DB1216200617773 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6652D2AF1DB1216200617773 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6652D2AE1DB1216200617773 /* stevens.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6652D2B01DB1216200617773 /* stevens */ = {
+			isa = PBXGroup;
+			children = (
+				868CACA61DD8A0FD008749A0 /* InfoBox.swift */,
+				868CACA41DD8A0E5008749A0 /* GameScene.swift */,
+				868CACA21DD8A0C1008749A0 /* Buildings.swift */,
+				865748DA1DD2831E008C0AE4 /* LaunchScreen.storyboard */,
+				865748DB1DD2831E008C0AE4 /* Main.storyboard */,
+				865748D81DD282C5008C0AE4 /* Assets.xcassets */,
+				865748A41DD28293008C0AE4 /* _DS_Store */,
+				865748A51DD28293008C0AE4 /* Actions.sks */,
+				865748A61DD28293008C0AE4 /* AppDelegate.swift */,
+				865748A91DD28293008C0AE4 /* emoji_lol.jpg */,
+				865748AA1DD28293008C0AE4 /* Explosion.sks */,
+				865748AB1DD28293008C0AE4 /* GameScene.sks */,
+				865748AD1DD28293008C0AE4 /* GameViewController.swift */,
+				865748AE1DD28293008C0AE4 /* howe01.png */,
+				865748AF1DD28293008C0AE4 /* Info.plist */,
+				865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */,
+				865748B21DD28293008C0AE4 /* LoginViewController.swift */,
+				865748B31DD28293008C0AE4 /* Main.storyboard.xml */,
+				865748B41DD28293008C0AE4 /* notes.txt */,
+				865748B51DD28293008C0AE4 /* Quize.swift */,
+				865748B61DD28293008C0AE4 /* sign-newhouse.png */,
+				865748B71DD28293008C0AE4 /* spark.png */,
+				865748B81DD28293008C0AE4 /* Stevens_map2.jpg */,
+				865748B91DD28293008C0AE4 /* street-light.png */,
+				865748BA1DD28293008C0AE4 /* treasure-box-glow.png */,
+				865748BB1DD28293008C0AE4 /* treasure-box.png */,
+				865748BC1DD28293008C0AE4 /* TreasureBox.swift */,
+				865748BD1DD28293008C0AE4 /* tree05.png */,
+				865748921DD28092008C0AE4 /* AudioToolbox.framework */,
+				865748931DD28092008C0AE4 /* Bolts.framework */,
+				865748971DD28092008C0AE4 /* Parse.framework */,
+				865748981DD28092008C0AE4 /* SystemConfiguration.framework */,
+				865748911DD2807D008C0AE4 /* stevens-Bridging-Header.h */,
+			);
+			path = stevens;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6652D2AD1DB1216200617773 /* stevens */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6652D2C61DB1216200617773 /* Build configuration list for PBXNativeTarget "stevens" */;
+			buildPhases = (
+				6652D2AA1DB1216200617773 /* Sources */,
+				6652D2AB1DB1216200617773 /* Frameworks */,
+				6652D2AC1DB1216200617773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = stevens;
+			productName = stevens;
+			productReference = 6652D2AE1DB1216200617773 /* stevens.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6652D2A61DB1216200617773 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Stevens;
+				TargetAttributes = {
+					6652D2AD1DB1216200617773 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 6S4EWJH888;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 6652D2A91DB1216200617773 /* Build configuration list for PBXProject "stevens" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6652D2A51DB1216200617773;
+			productRefGroup = 6652D2AF1DB1216200617773 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6652D2AD1DB1216200617773 /* stevens */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6652D2AC1DB1216200617773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				865748DD1DD2831E008C0AE4 /* Main.storyboard in Resources */,
+				865748D31DD28293008C0AE4 /* street-light.png in Resources */,
+				865748D51DD28293008C0AE4 /* treasure-box.png in Resources */,
+				865748D91DD282C5008C0AE4 /* Assets.xcassets in Resources */,
+				865748C81DD28293008C0AE4 /* howe01.png in Resources */,
+				865748C31DD28293008C0AE4 /* emoji_lol.jpg in Resources */,
+				865748D71DD28293008C0AE4 /* tree05.png in Resources */,
+				865748CB1DD28293008C0AE4 /* LaunchScreen.storyboard.xml in Resources */,
+				865748BE1DD28293008C0AE4 /* _DS_Store in Resources */,
+				865748D21DD28293008C0AE4 /* Stevens_map2.jpg in Resources */,
+				865748C51DD28293008C0AE4 /* GameScene.sks in Resources */,
+				865748D41DD28293008C0AE4 /* treasure-box-glow.png in Resources */,
+				865748C41DD28293008C0AE4 /* Explosion.sks in Resources */,
+				865748DC1DD2831E008C0AE4 /* LaunchScreen.storyboard in Resources */,
+				865748C91DD28293008C0AE4 /* Info.plist in Resources */,
+				865748D11DD28293008C0AE4 /* spark.png in Resources */,
+				865748D01DD28293008C0AE4 /* sign-newhouse.png in Resources */,
+				865748CD1DD28293008C0AE4 /* Main.storyboard.xml in Resources */,
+				865748BF1DD28293008C0AE4 /* Actions.sks in Resources */,
+				865748CE1DD28293008C0AE4 /* notes.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6652D2AA1DB1216200617773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				868CACA31DD8A0C1008749A0 /* Buildings.swift in Sources */,
+				865748D61DD28293008C0AE4 /* TreasureBox.swift in Sources */,
+				865748CC1DD28293008C0AE4 /* LoginViewController.swift in Sources */,
+				868CACA51DD8A0E5008749A0 /* GameScene.swift in Sources */,
+				865748C71DD28293008C0AE4 /* GameViewController.swift in Sources */,
+				865748CF1DD28293008C0AE4 /* Quize.swift in Sources */,
+				865748C01DD28293008C0AE4 /* AppDelegate.swift in Sources */,
+				868CACA71DD8A0FD008749A0 /* InfoBox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6652D2C41DB1216200617773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6652D2C51DB1216200617773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6652D2C71DB1216200617773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6S4EWJH888;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/stevens",
+				);
+				INFOPLIST_FILE = stevens/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.Stevens.stevens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "stevens/stevens-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		6652D2C81DB1216200617773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6S4EWJH888;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/stevens",
+				);
+				INFOPLIST_FILE = stevens/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.Stevens.stevens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "stevens/stevens-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6652D2A91DB1216200617773 /* Build configuration list for PBXProject "stevens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6652D2C41DB1216200617773 /* Debug */,
+				6652D2C51DB1216200617773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6652D2C61DB1216200617773 /* Build configuration list for PBXNativeTarget "stevens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6652D2C71DB1216200617773 /* Debug */,
+				6652D2C81DB1216200617773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6652D2A61DB1216200617773 /* Project object */;
+}
