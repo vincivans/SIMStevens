@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862AECE01DE4E2FA00ADFA69 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 862AECDE1DE4E2FA00ADFA69 /* GameScene.sks */; };
+		862AECE11DE4E2FA00ADFA69 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862AECDF1DE4E2FA00ADFA69 /* Info.plist */; };
 		865748991DD28092008C0AE4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748921DD28092008C0AE4 /* AudioToolbox.framework */; };
 		8657489A1DD28092008C0AE4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748931DD28092008C0AE4 /* Bolts.framework */; };
 		8657489E1DD28092008C0AE4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748971DD28092008C0AE4 /* Parse.framework */; };
 		8657489F1DD28092008C0AE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865748981DD28092008C0AE4 /* SystemConfiguration.framework */; };
-		865748BE1DD28293008C0AE4 /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = 865748A41DD28293008C0AE4 /* _DS_Store */; };
 		865748BF1DD28293008C0AE4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748A51DD28293008C0AE4 /* Actions.sks */; };
 		865748C01DD28293008C0AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748A61DD28293008C0AE4 /* AppDelegate.swift */; };
 		865748C41DD28293008C0AE4 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748AA1DD28293008C0AE4 /* Explosion.sks */; };
-		865748C51DD28293008C0AE4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748AB1DD28293008C0AE4 /* GameScene.sks */; };
 		865748C71DD28293008C0AE4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748AD1DD28293008C0AE4 /* GameViewController.swift */; };
-		865748C91DD28293008C0AE4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 865748AF1DD28293008C0AE4 /* Info.plist */; };
 		865748CB1DD28293008C0AE4 /* LaunchScreen.storyboard.xml in Resources */ = {isa = PBXBuildFile; fileRef = 865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */; };
 		865748CC1DD28293008C0AE4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748B21DD28293008C0AE4 /* LoginViewController.swift */; };
 		865748CD1DD28293008C0AE4 /* Main.storyboard.xml in Resources */ = {isa = PBXBuildFile; fileRef = 865748B31DD28293008C0AE4 /* Main.storyboard.xml */; };
@@ -34,18 +33,17 @@
 
 /* Begin PBXFileReference section */
 		6652D2AE1DB1216200617773 /* stevens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stevens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		862AECDE1DE4E2FA00ADFA69 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = SOURCE_ROOT; };
+		862AECDF1DE4E2FA00ADFA69 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		865748911DD2807D008C0AE4 /* stevens-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "stevens-Bridging-Header.h"; sourceTree = "<group>"; };
 		865748921DD28092008C0AE4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioToolbox.framework; sourceTree = "<group>"; };
 		865748931DD28092008C0AE4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		865748971DD28092008C0AE4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		865748981DD28092008C0AE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
-		865748A41DD28293008C0AE4 /* _DS_Store */ = {isa = PBXFileReference; lastKnownFileType = text; path = _DS_Store; sourceTree = "<group>"; };
 		865748A51DD28293008C0AE4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		865748A61DD28293008C0AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		865748AA1DD28293008C0AE4 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
-		865748AB1DD28293008C0AE4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		865748AD1DD28293008C0AE4 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		865748AF1DD28293008C0AE4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LaunchScreen.storyboard.xml; sourceTree = "<group>"; };
 		865748B21DD28293008C0AE4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		865748B31DD28293008C0AE4 /* Main.storyboard.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.storyboard.xml; sourceTree = "<group>"; };
@@ -94,19 +92,18 @@
 		6652D2B01DB1216200617773 /* stevens */ = {
 			isa = PBXGroup;
 			children = (
+				862AECDE1DE4E2FA00ADFA69 /* GameScene.sks */,
+				862AECDF1DE4E2FA00ADFA69 /* Info.plist */,
 				868CACA61DD8A0FD008749A0 /* InfoBox.swift */,
 				868CACA41DD8A0E5008749A0 /* GameScene.swift */,
 				868CACA21DD8A0C1008749A0 /* Buildings.swift */,
 				865748DA1DD2831E008C0AE4 /* LaunchScreen.storyboard */,
 				865748DB1DD2831E008C0AE4 /* Main.storyboard */,
 				865748D81DD282C5008C0AE4 /* Assets.xcassets */,
-				865748A41DD28293008C0AE4 /* _DS_Store */,
 				865748A51DD28293008C0AE4 /* Actions.sks */,
 				865748A61DD28293008C0AE4 /* AppDelegate.swift */,
 				865748AA1DD28293008C0AE4 /* Explosion.sks */,
-				865748AB1DD28293008C0AE4 /* GameScene.sks */,
 				865748AD1DD28293008C0AE4 /* GameViewController.swift */,
-				865748AF1DD28293008C0AE4 /* Info.plist */,
 				865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */,
 				865748B21DD28293008C0AE4 /* LoginViewController.swift */,
 				865748B31DD28293008C0AE4 /* Main.storyboard.xml */,
@@ -186,12 +183,11 @@
 				865748DD1DD2831E008C0AE4 /* Main.storyboard in Resources */,
 				865748D91DD282C5008C0AE4 /* Assets.xcassets in Resources */,
 				865748CB1DD28293008C0AE4 /* LaunchScreen.storyboard.xml in Resources */,
-				865748BE1DD28293008C0AE4 /* _DS_Store in Resources */,
-				865748C51DD28293008C0AE4 /* GameScene.sks in Resources */,
 				865748C41DD28293008C0AE4 /* Explosion.sks in Resources */,
 				865748DC1DD2831E008C0AE4 /* LaunchScreen.storyboard in Resources */,
-				865748C91DD28293008C0AE4 /* Info.plist in Resources */,
+				862AECE01DE4E2FA00ADFA69 /* GameScene.sks in Resources */,
 				865748CD1DD28293008C0AE4 /* Main.storyboard.xml in Resources */,
+				862AECE11DE4E2FA00ADFA69 /* Info.plist in Resources */,
 				865748BF1DD28293008C0AE4 /* Actions.sks in Resources */,
 				865748CE1DD28293008C0AE4 /* notes.txt in Resources */,
 			);
