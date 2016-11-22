@@ -14,25 +14,16 @@
 		865748BE1DD28293008C0AE4 /* _DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = 865748A41DD28293008C0AE4 /* _DS_Store */; };
 		865748BF1DD28293008C0AE4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748A51DD28293008C0AE4 /* Actions.sks */; };
 		865748C01DD28293008C0AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748A61DD28293008C0AE4 /* AppDelegate.swift */; };
-		865748C31DD28293008C0AE4 /* emoji_lol.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 865748A91DD28293008C0AE4 /* emoji_lol.jpg */; };
 		865748C41DD28293008C0AE4 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748AA1DD28293008C0AE4 /* Explosion.sks */; };
 		865748C51DD28293008C0AE4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 865748AB1DD28293008C0AE4 /* GameScene.sks */; };
 		865748C71DD28293008C0AE4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748AD1DD28293008C0AE4 /* GameViewController.swift */; };
-		865748C81DD28293008C0AE4 /* howe01.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748AE1DD28293008C0AE4 /* howe01.png */; };
 		865748C91DD28293008C0AE4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 865748AF1DD28293008C0AE4 /* Info.plist */; };
 		865748CB1DD28293008C0AE4 /* LaunchScreen.storyboard.xml in Resources */ = {isa = PBXBuildFile; fileRef = 865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */; };
 		865748CC1DD28293008C0AE4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748B21DD28293008C0AE4 /* LoginViewController.swift */; };
 		865748CD1DD28293008C0AE4 /* Main.storyboard.xml in Resources */ = {isa = PBXBuildFile; fileRef = 865748B31DD28293008C0AE4 /* Main.storyboard.xml */; };
 		865748CE1DD28293008C0AE4 /* notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 865748B41DD28293008C0AE4 /* notes.txt */; };
 		865748CF1DD28293008C0AE4 /* Quize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748B51DD28293008C0AE4 /* Quize.swift */; };
-		865748D01DD28293008C0AE4 /* sign-newhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748B61DD28293008C0AE4 /* sign-newhouse.png */; };
-		865748D11DD28293008C0AE4 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748B71DD28293008C0AE4 /* spark.png */; };
-		865748D21DD28293008C0AE4 /* Stevens_map2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 865748B81DD28293008C0AE4 /* Stevens_map2.jpg */; };
-		865748D31DD28293008C0AE4 /* street-light.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748B91DD28293008C0AE4 /* street-light.png */; };
-		865748D41DD28293008C0AE4 /* treasure-box-glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748BA1DD28293008C0AE4 /* treasure-box-glow.png */; };
-		865748D51DD28293008C0AE4 /* treasure-box.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748BB1DD28293008C0AE4 /* treasure-box.png */; };
 		865748D61DD28293008C0AE4 /* TreasureBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865748BC1DD28293008C0AE4 /* TreasureBox.swift */; };
-		865748D71DD28293008C0AE4 /* tree05.png in Resources */ = {isa = PBXBuildFile; fileRef = 865748BD1DD28293008C0AE4 /* tree05.png */; };
 		865748D91DD282C5008C0AE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 865748D81DD282C5008C0AE4 /* Assets.xcassets */; };
 		865748DC1DD2831E008C0AE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865748DA1DD2831E008C0AE4 /* LaunchScreen.storyboard */; };
 		865748DD1DD2831E008C0AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865748DB1DD2831E008C0AE4 /* Main.storyboard */; };
@@ -48,28 +39,19 @@
 		865748931DD28092008C0AE4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		865748971DD28092008C0AE4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		865748981DD28092008C0AE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
-		865748A41DD28293008C0AE4 /* _DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = _DS_Store; sourceTree = "<group>"; };
+		865748A41DD28293008C0AE4 /* _DS_Store */ = {isa = PBXFileReference; lastKnownFileType = text; path = _DS_Store; sourceTree = "<group>"; };
 		865748A51DD28293008C0AE4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		865748A61DD28293008C0AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		865748A91DD28293008C0AE4 /* emoji_lol.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = emoji_lol.jpg; sourceTree = "<group>"; };
 		865748AA1DD28293008C0AE4 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		865748AB1DD28293008C0AE4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		865748AD1DD28293008C0AE4 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		865748AE1DD28293008C0AE4 /* howe01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howe01.png; sourceTree = "<group>"; };
 		865748AF1DD28293008C0AE4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LaunchScreen.storyboard.xml; sourceTree = "<group>"; };
 		865748B21DD28293008C0AE4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		865748B31DD28293008C0AE4 /* Main.storyboard.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.storyboard.xml; sourceTree = "<group>"; };
 		865748B41DD28293008C0AE4 /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
 		865748B51DD28293008C0AE4 /* Quize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quize.swift; sourceTree = "<group>"; };
-		865748B61DD28293008C0AE4 /* sign-newhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign-newhouse.png"; sourceTree = "<group>"; };
-		865748B71DD28293008C0AE4 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		865748B81DD28293008C0AE4 /* Stevens_map2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stevens_map2.jpg; sourceTree = "<group>"; };
-		865748B91DD28293008C0AE4 /* street-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "street-light.png"; sourceTree = "<group>"; };
-		865748BA1DD28293008C0AE4 /* treasure-box-glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treasure-box-glow.png"; sourceTree = "<group>"; };
-		865748BB1DD28293008C0AE4 /* treasure-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treasure-box.png"; sourceTree = "<group>"; };
 		865748BC1DD28293008C0AE4 /* TreasureBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureBox.swift; sourceTree = "<group>"; };
-		865748BD1DD28293008C0AE4 /* tree05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree05.png; sourceTree = "<group>"; };
 		865748D81DD282C5008C0AE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		865748DA1DD2831E008C0AE4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		865748DB1DD2831E008C0AE4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -121,25 +103,16 @@
 				865748A41DD28293008C0AE4 /* _DS_Store */,
 				865748A51DD28293008C0AE4 /* Actions.sks */,
 				865748A61DD28293008C0AE4 /* AppDelegate.swift */,
-				865748A91DD28293008C0AE4 /* emoji_lol.jpg */,
 				865748AA1DD28293008C0AE4 /* Explosion.sks */,
 				865748AB1DD28293008C0AE4 /* GameScene.sks */,
 				865748AD1DD28293008C0AE4 /* GameViewController.swift */,
-				865748AE1DD28293008C0AE4 /* howe01.png */,
 				865748AF1DD28293008C0AE4 /* Info.plist */,
 				865748B11DD28293008C0AE4 /* LaunchScreen.storyboard.xml */,
 				865748B21DD28293008C0AE4 /* LoginViewController.swift */,
 				865748B31DD28293008C0AE4 /* Main.storyboard.xml */,
 				865748B41DD28293008C0AE4 /* notes.txt */,
 				865748B51DD28293008C0AE4 /* Quize.swift */,
-				865748B61DD28293008C0AE4 /* sign-newhouse.png */,
-				865748B71DD28293008C0AE4 /* spark.png */,
-				865748B81DD28293008C0AE4 /* Stevens_map2.jpg */,
-				865748B91DD28293008C0AE4 /* street-light.png */,
-				865748BA1DD28293008C0AE4 /* treasure-box-glow.png */,
-				865748BB1DD28293008C0AE4 /* treasure-box.png */,
 				865748BC1DD28293008C0AE4 /* TreasureBox.swift */,
-				865748BD1DD28293008C0AE4 /* tree05.png */,
 				865748921DD28092008C0AE4 /* AudioToolbox.framework */,
 				865748931DD28092008C0AE4 /* Bolts.framework */,
 				865748971DD28092008C0AE4 /* Parse.framework */,
@@ -211,22 +184,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				865748DD1DD2831E008C0AE4 /* Main.storyboard in Resources */,
-				865748D31DD28293008C0AE4 /* street-light.png in Resources */,
-				865748D51DD28293008C0AE4 /* treasure-box.png in Resources */,
 				865748D91DD282C5008C0AE4 /* Assets.xcassets in Resources */,
-				865748C81DD28293008C0AE4 /* howe01.png in Resources */,
-				865748C31DD28293008C0AE4 /* emoji_lol.jpg in Resources */,
-				865748D71DD28293008C0AE4 /* tree05.png in Resources */,
 				865748CB1DD28293008C0AE4 /* LaunchScreen.storyboard.xml in Resources */,
 				865748BE1DD28293008C0AE4 /* _DS_Store in Resources */,
-				865748D21DD28293008C0AE4 /* Stevens_map2.jpg in Resources */,
 				865748C51DD28293008C0AE4 /* GameScene.sks in Resources */,
-				865748D41DD28293008C0AE4 /* treasure-box-glow.png in Resources */,
 				865748C41DD28293008C0AE4 /* Explosion.sks in Resources */,
 				865748DC1DD2831E008C0AE4 /* LaunchScreen.storyboard in Resources */,
 				865748C91DD28293008C0AE4 /* Info.plist in Resources */,
-				865748D11DD28293008C0AE4 /* spark.png in Resources */,
-				865748D01DD28293008C0AE4 /* sign-newhouse.png in Resources */,
 				865748CD1DD28293008C0AE4 /* Main.storyboard.xml in Resources */,
 				865748BF1DD28293008C0AE4 /* Actions.sks in Resources */,
 				865748CE1DD28293008C0AE4 /* notes.txt in Resources */,
