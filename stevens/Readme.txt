@@ -1,0 +1,1 @@
+This is an ios for course CS545. We created an simulation based game for Stevens Institute of Technology. It contains basic tutorials for new users and detailed Stevens history in the game.
